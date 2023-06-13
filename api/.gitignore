@@ -108,3 +108,6 @@ package-lock.json
 
 # notas personales
 notas.txt
+
+# info importante
+data.json

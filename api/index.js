@@ -22,8 +22,8 @@ app.get("/", (req, res) => {
   res.send("Hola desde el backend!");
 });
 
-app.listen(port, () => {
-  connectDB();
-  loadDB();
+app.listen(port, async () => {
+  await connectDB();
+  await loadDB();
   console.log("App is listening on port 3001!");
 });

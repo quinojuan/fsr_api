@@ -1,21 +1,15 @@
 import mongoose from "mongoose";
+import "dotenv/config";
 
 const connectDB = async () => {
-  try {
-    const connection = await mongoose.connect(
-      "mongodb://localhost:27017/fsr",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    );
-
-    const url = `${connection.connection.host}:${connection.connection.port}`;
-    console.log(`MongoDB conectado en: ${url}`);
-  } catch (error) {
-    console.error(`Error al conectar a MongoDB: ${error.message}`);
-    process.exit(1); // sirve para terminar la app
-  }
+  await mongoose
+    .connect(process.env.DB_URL)
+    .then(() => {
+      console.log("Todo fue ok");
+    })
+    .catch((err) => {
+      console.log("Hubo un error al conectarnos a la BBDD", { err });
+    });
 };
 
 export default connectDB;
